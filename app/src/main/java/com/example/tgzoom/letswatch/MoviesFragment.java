@@ -1,9 +1,10 @@
 package com.example.tgzoom.letswatch;
 
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,9 +12,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.GridView;
+import java.util.ArrayList;
 
 public class MoviesFragment extends Fragment {
+
+    private GridView gridView;
+    private MovieDBAdapter movieDBAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,10 +27,20 @@ public class MoviesFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        updateMovieDBList();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movies, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_movies, container, false);
+        gridView = (GridView) rootView.findViewById(R.id.moviedb_gridview);
+        movieDBAdapter = new MovieDBAdapter(getContext(),new ArrayList<MovieDB>());
+        gridView.setAdapter(movieDBAdapter);
+        return rootView;
     }
 
     @Override
@@ -46,5 +61,12 @@ public class MoviesFragment extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void updateMovieDBList(){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String api_path = sharedPreferences.getString(getString(R.string.pref_order_key),getString(R.string.pref_order_default_value));
+        new MovieDBAsyncTask(getContext(),movieDBAdapter,api_path).execute();
+
     }
 }
