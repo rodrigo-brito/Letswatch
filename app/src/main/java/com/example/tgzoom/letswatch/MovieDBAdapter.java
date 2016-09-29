@@ -51,7 +51,6 @@ public class MovieDBAdapter extends BaseAdapter {
             moviedb_list_item = inflater.inflate(R.layout.moviedb_list_item, null);
         }
         ImageView imageView = (ImageView) moviedb_list_item.findViewById(R.id.movie_imageview);
-        imageView.setImageResource(android.R.drawable.alert_dark_frame);
         MovieDB movieDB = movieDBList.get(position);
         Picasso.with(context).load(movieDB.getPoster_path()).into(imageView);
         return moviedb_list_item;
