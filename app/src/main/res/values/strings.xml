@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Letswatch</string>
+    <string name="settings_menu_title">Settings</string>
+    <string name="pref_order_title">Order</string>
+    <string name="pref_order_default_value">top_rated</string>
+    <string name="pref_order_dialog_title">Sorting order</string>
+    <string name="pref_order_key">pref_order</string>
+</resources>
