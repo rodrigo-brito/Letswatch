@@ -4,15 +4,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class MoviesFragment extends Fragment {
@@ -40,6 +45,26 @@ public class MoviesFragment extends Fragment {
         gridView = (GridView) rootView.findViewById(R.id.moviedb_gridview);
         movieDBAdapter = new MovieDBAdapter(getContext(),new ArrayList<MovieDB>());
         gridView.setAdapter(movieDBAdapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MovieDB movieDB = (MovieDB) parent.getItemAtPosition(position);
+                Intent detail = new Intent(getContext(),DetailActivity.class);
+                detail.putExtra("MovieDBObject",movieDB);
+                startActivity(detail);
+            }
+        });
+
+        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                MovieDB movieDB = (MovieDB) parent.getItemAtPosition(position);
+                Toast.makeText(getContext(),movieDB.getOriginal_title(),Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
         return rootView;
     }
 

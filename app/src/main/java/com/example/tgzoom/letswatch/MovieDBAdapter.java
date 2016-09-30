@@ -52,7 +52,9 @@ public class MovieDBAdapter extends BaseAdapter {
         }
         ImageView imageView = (ImageView) moviedb_list_item.findViewById(R.id.movie_imageview);
         MovieDB movieDB = movieDBList.get(position);
-        Picasso.with(context).load(movieDB.getPoster_path()).into(imageView);
+        Picasso.with(context)
+                .load(movieDB.getPoster_path())
+                .into(imageView);
         return moviedb_list_item;
     }
 
