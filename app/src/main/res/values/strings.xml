@@ -5,4 +5,6 @@
     <string name="pref_order_default_value">top_rated</string>
     <string name="pref_order_dialog_title">Sorting order</string>
     <string name="pref_order_key">pref_order</string>
+    <string name="movie_cover_image">movie cover image</string>
+    <string name="trailers_text">Trailers:</string>
 </resources>

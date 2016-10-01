@@ -31,6 +31,8 @@ public class MovieJSONParser {
             Boolean video           = movie.getBoolean("video");
             String release_date     = movie.getString("release_date");
             Double vote_avarage     = movie.getDouble("vote_average");
+            String overview         = movie.getString("overview");
+            int id                  = movie.getInt("id");
 
             Uri.Builder builder = new Uri.Builder();
             poster_path = poster_path.substring(1);
@@ -49,6 +51,8 @@ public class MovieJSONParser {
             movieDB.setVideo(video);
             movieDB.setRelease_date(release_date);
             movieDB.setVote_average(vote_avarage);
+            movieDB.setOverview(overview);
+            movieDB.setId(id);
             movideDBList.add(movieDB);
         }
 

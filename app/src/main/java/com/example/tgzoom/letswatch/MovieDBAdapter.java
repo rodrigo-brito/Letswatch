@@ -32,7 +32,11 @@ public class MovieDBAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return this.movieDBList.size();
+        if(this.movieDBList != null){
+            return this.movieDBList.size();
+        }
+
+        return 0;
     }
 
     @Override

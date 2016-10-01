@@ -14,6 +14,24 @@ public class MovieDB implements Serializable{
     private Boolean video;
     private String release_date;
     private Double vote_average;
+    private String overview;
+    private int Id;
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
 
     public Double getVote_average() {
         return vote_average;
@@ -64,7 +82,7 @@ public class MovieDB implements Serializable{
     }
 
     public String getRelease_date() {
-        return release_date;
+        return release_date.substring(0,4);
     }
 
     public void setRelease_date(String release_date) {

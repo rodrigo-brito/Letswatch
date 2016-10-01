@@ -91,7 +91,7 @@ public class MoviesFragment extends Fragment {
     public void updateMovieDBList(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String api_path = sharedPreferences.getString(getString(R.string.pref_order_key),getString(R.string.pref_order_default_value));
-        new MovieDBAsyncTask(getContext(),movieDBAdapter,api_path).execute();
+        new MovieDBAsyncTask(getContext(),movieDBAdapter).execute(api_path);
 
     }
 }

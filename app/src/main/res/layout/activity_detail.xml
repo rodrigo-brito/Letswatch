@@ -2,12 +2,13 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_scrollview"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:context="com.example.tgzoom.letswatch.DetailActivity">
 
@@ -31,7 +32,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="40dp"
@@ -43,7 +44,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -54,7 +56,8 @@
                         android:id="@+id/movie_cover_imageview"
                         android:layout_width="100dp"
                         android:layout_height="150dp"
-                        android:src="@android:drawable/sym_action_call" />
+                        android:src="@android:drawable/sym_action_call"
+                        android:contentDescription="@string/movie_cover_image" />
 
                 </LinearLayout>
 
@@ -111,27 +114,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Trailers:" />
+                android:textSize="20sp"
+                android:text="@string/trailers_text" />
 
-            <RelativeLayout
-                android:layout_marginTop="10dp"
+            <LinearLayout
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:id="@+id/trailer_list_parent_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/trailer_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/trailer_image"
-                    android:text="Trailers 1" />
 
-            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>
