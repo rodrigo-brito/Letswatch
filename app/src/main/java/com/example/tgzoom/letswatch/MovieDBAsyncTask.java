@@ -2,6 +2,7 @@ package com.example.tgzoom.letswatch;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.json.JSONException;
 
@@ -25,7 +26,7 @@ public class MovieDBAsyncTask extends AsyncTask<String,ArrayList<MovieDB>,ArrayL
     protected ArrayList<MovieDB> doInBackground(String... api_path) {
         try {
             NetworkRequest networkRequest = new NetworkRequest();
-            String json = networkRequest.getMovieJsonString(api_path);
+            String json = networkRequest.getMovieJsonString(api_path,0);
             ArrayList<MovieDB> movieDBList = MovieJSONParser.parseJSON(json);
             if(movieDBList != null){
                 return movieDBList;

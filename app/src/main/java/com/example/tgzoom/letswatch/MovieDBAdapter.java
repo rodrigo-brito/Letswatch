@@ -20,9 +20,10 @@ import java.util.List;
  */
 public class MovieDBAdapter extends BaseAdapter {
 
-    Context context;
-    LayoutInflater inflater;
-    ArrayList<MovieDB> movieDBList;
+    private Context context;
+    private LayoutInflater inflater;
+    private ArrayList<MovieDB> movieDBList = new ArrayList<MovieDB>();
+    public int page_index = 1;
 
     MovieDBAdapter(Context context,ArrayList<MovieDB> movieDBList){
         this.context = context;
@@ -58,12 +59,14 @@ public class MovieDBAdapter extends BaseAdapter {
         MovieDB movieDB = movieDBList.get(position);
         Picasso.with(context)
                 .load(movieDB.getPoster_path())
+                .priority(Picasso.Priority.HIGH)
+                .placeholder(android.R.drawable.arrow_up_float)
                 .into(imageView);
         return moviedb_list_item;
     }
 
     public void updateMovieDBAdapter(ArrayList<MovieDB> movieDBList){
-        this.movieDBList = movieDBList;
+        this.movieDBList.addAll(movieDBList);
         notifyDataSetChanged();
     }
 }

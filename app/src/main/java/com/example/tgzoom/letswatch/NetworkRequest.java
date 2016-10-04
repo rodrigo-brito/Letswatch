@@ -20,8 +20,9 @@ public class NetworkRequest {
 
     private static String API_KEY              = "api_key";
     private static String KEY                  = "c0dc85e33208e4b08052c3ee216b98f0";
+    private static String PAGE                 = "page";
 
-    public String buildMovieUrl(String[] api_path){
+    public String buildMovieUrl(String[] api_path,int page_index){
         Uri.Builder builder = new Uri.Builder();
         builder
             .scheme("http")
@@ -29,7 +30,8 @@ public class NetworkRequest {
             .appendPath("3")
             .appendPath("movie")
             .appendPath(api_path[0])
-            .appendQueryParameter(API_KEY,KEY);
+            .appendQueryParameter(API_KEY,KEY)
+            .appendQueryParameter(PAGE, String.valueOf(page_index));
 
         return builder.build().toString();
     }
@@ -87,9 +89,9 @@ public class NetworkRequest {
         return null;
     }
 
-    public String getMovieJsonString(String[] api_path) throws IOException {
+    public String getMovieJsonString(String[] api_path,int page_index) throws IOException {
         try{
-            String urlString = buildMovieUrl(api_path);
+            String urlString = buildMovieUrl(api_path,page_index);
             URL url = new URL(urlString);
             httpURLConnection = openConection(url, "GET");
             InputStream inputStream = httpURLConnection.getInputStream();

@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -65,6 +66,20 @@ public class MoviesFragment extends Fragment {
             }
         });
 
+        gridView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                if(i+i1 >= i2 ){
+                    updateMovieDBList();
+                }
+            }
+        });
+
         return rootView;
     }
 
@@ -88,10 +103,10 @@ public class MoviesFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+
     public void updateMovieDBList(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String api_path = sharedPreferences.getString(getString(R.string.pref_order_key),getString(R.string.pref_order_default_value));
         new MovieDBAsyncTask(getContext(),movieDBAdapter).execute(api_path);
-
     }
 }
