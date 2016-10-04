@@ -66,7 +66,6 @@ public class NetworkRequest {
             httpConnection.connect();
             return httpConnection;
         }catch (Exception e){
-            Log.i("MovieDBException",e.toString());
         }
         return null;
     }
@@ -78,7 +77,6 @@ public class NetworkRequest {
             while ((line = buffReader.readLine()) != null) {
                 buffer.append(line + "\n");
             }
-
             if (buffer.length() == 0) {
                 return null;
             }
