@@ -5,12 +5,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.tgzoom.letswatch.MoviesFragment">
 
-    <GridView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:id="@+id/moviedb_gridview"
-        android:numColumns="4">
-    </GridView>\
+        android:scrollbars="vertical"
+        android:id="@+id/moviedb_recyclerview">
+    </android.support.v7.widget.RecyclerView>\
 
 </FrameLayout>

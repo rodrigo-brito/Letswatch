@@ -16,17 +16,19 @@ import java.util.ArrayList;
 public class MovieDBAsyncTask extends AsyncTask<String,ArrayList<MovieDB>,ArrayList<MovieDB>> {
     private MovieDBAdapter movieDBAdapter;
     private Context context;
+    private int page;
 
-    MovieDBAsyncTask(Context context, MovieDBAdapter movieDBAdapter){
+    MovieDBAsyncTask(Context context, MovieDBAdapter movieDBAdapter,int page){
         this.movieDBAdapter = movieDBAdapter;
         this.context = context;
+        this.page = page;
     }
 
     @Override
     protected ArrayList<MovieDB> doInBackground(String... api_path) {
         try {
             NetworkRequest networkRequest = new NetworkRequest();
-            String json = networkRequest.getMovieJsonString(api_path,0);
+            String json = networkRequest.getMovieJsonString(api_path,page);
             ArrayList<MovieDB> movieDBList = MovieJSONParser.parseJSON(json);
             if(movieDBList != null){
                 return movieDBList;
