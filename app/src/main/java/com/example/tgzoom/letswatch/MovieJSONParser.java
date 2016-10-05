@@ -41,7 +41,7 @@ public class MovieJSONParser {
                             .authority("image.tmdb.org")
                             .appendPath("t")
                             .appendPath("p")
-                            .appendPath("w500")
+                            .appendPath("w185")
                             .appendPath(poster_path).build().toString();
 
             movieDB.setOriginal_title(original_title);
