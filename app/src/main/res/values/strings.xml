@@ -7,4 +7,7 @@
     <string name="pref_order_key">pref_order</string>
     <string name="movie_cover_image">movie cover image</string>
     <string name="trailers_text">Trailers:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
