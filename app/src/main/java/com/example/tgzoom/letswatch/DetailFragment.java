@@ -39,7 +39,7 @@ public class DetailFragment extends Fragment {
     }
 
     public void loadMoviedbInformation(){
-        MovieDB movieDB = (MovieDB) getActivity().getIntent().getSerializableExtra("MovieDBObject");
+        MovieDB movieDB = (MovieDB) getActivity().getIntent().getExtras().getParcelable("MovieDBObject");
 
         TextView movie_title            = (TextView)  rootView.findViewById(R.id.movie_title_textview);
         ImageView movie_cover           = (ImageView) rootView.findViewById(R.id.movie_cover_imageview);
@@ -58,6 +58,6 @@ public class DetailFragment extends Fragment {
                 .load(movieDB.getPoster_path())
                 .into(movie_cover);
 
-        updateTrailersInformation(String.valueOf(movieDB.getId()));
+        updateTrailersInformation(movieDB.getId());
     }
 }

@@ -1,28 +1,70 @@
 package com.example.tgzoom.letswatch;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Created by tgzoom on 9/29/16.
  */
-public class MovieDB implements Serializable{
+public class MovieDB implements Parcelable{
 
     private String title;
     private String original_title;
     private String poster_path;
     private int vote_count;
-    private Boolean video;
     private String release_date;
     private Double vote_average;
     private String overview;
-    private int Id;
+    private String id;
 
-    public int getId() {
-        return Id;
+    protected MovieDB(Parcel in) {
+        title = in.readString();
+        original_title = in.readString();
+        poster_path = in.readString();
+        release_date = in.readString();
+        overview = in.readString();
+        vote_count = in.readInt();
+        vote_average = in.readDouble();
     }
 
-    public void setId(int id) {
-        Id = id;
+    public MovieDB(){
+
+    }
+
+    public static final Creator<MovieDB> CREATOR = new Creator<MovieDB>() {
+        @Override
+        public MovieDB createFromParcel(Parcel in) {
+            return new MovieDB(in);
+        }
+
+        @Override
+        public MovieDB[] newArray(int size) {
+            return new MovieDB[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(title);
+        parcel.writeString(original_title);
+        parcel.writeString(poster_path);
+        parcel.writeString(release_date);
+        parcel.writeString(overview);
+        parcel.writeInt(vote_count);
+        parcel.writeDouble(vote_average);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public void setId(String ids) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getOverview() {
@@ -73,14 +115,6 @@ public class MovieDB implements Serializable{
         this.vote_count = vote_count;
     }
 
-    public Boolean getVideo() {
-        return video;
-    }
-
-    public void setVideo(Boolean video) {
-        this.video = video;
-    }
-
     public String getRelease_date() {
         return release_date.substring(0,4);
     }
@@ -88,6 +122,4 @@ public class MovieDB implements Serializable{
     public void setRelease_date(String release_date) {
         this.release_date = release_date;
     }
-
-
 }

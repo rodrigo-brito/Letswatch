@@ -28,11 +28,10 @@ public class MovieJSONParser {
             String original_title   = movie.getString("original_title");
             String poster_path      = movie.getString("poster_path");
             int vote_count          = movie.getInt("vote_count");
-            Boolean video           = movie.getBoolean("video");
             String release_date     = movie.getString("release_date");
             Double vote_avarage     = movie.getDouble("vote_average");
             String overview         = movie.getString("overview");
-            int id                  = movie.getInt("id");
+            String Id               = String.valueOf(movie.getInt("id"));
 
             Uri.Builder builder = new Uri.Builder();
             poster_path = poster_path.substring(1);
@@ -48,11 +47,10 @@ public class MovieJSONParser {
             movieDB.setTitle(title);
             movieDB.setPoster_path(poster_path);
             movieDB.setVote_count(vote_count);
-            movieDB.setVideo(video);
             movieDB.setRelease_date(release_date);
             movieDB.setVote_average(vote_avarage);
             movieDB.setOverview(overview);
-            movieDB.setId(id);
+            movieDB.setId(Id);
             movideDBList.add(movieDB);
         }
 
